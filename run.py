@@ -1,4 +1,4 @@
-import random
+from random import randint
 import time
 
 # computer and player scores set to 0 
@@ -26,30 +26,19 @@ class Playground:
     the main playground class set and sizes set also sets the amount of ships per playground 
     and sets out the playground
     """
-
-    def grid (start_row, end_row, start_col, end_col):
-        global grid
-        global ship_positions
-
-        all_safe = True
-        for r in range(start_row, end_row):
-            for c in range(start_col, end_col):
-                if grid [r][c] != ".":
-                    all_safe = False
-                    break
-                if not all_safe:
-                    break
-
-
-        if all_safe:
-            ship_positions.append([start_row, end_row, start_col, end_col])
-            for r in range(start_row, end_row):
-                for c in range(start_col, end_col):
-                    grid[r][c] ="X"
-
-        return all_safe
-
-
-
-#class Newgame:
-   # def __init__()
+class Grid:
+    def print_grid:
+        ocean_grid = [[i for i in range(j, j + 5)] for j in range(0, 25, 5)]
+        for row in grid:
+            for element in row:
+                print(element, end="")
+            print()
+class computer_choice():
+    """
+    random number choice for the grid 
+    """
+class Ships():
+    def __init__(self)
+class Player():
+class User_input():
+class End_game
