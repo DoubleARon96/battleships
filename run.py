@@ -34,8 +34,22 @@ class Playground:
         all_safe = True
         for r in range(start_row, end_row):
             for c in range(start_col, end_col):
-                if grid [r][c] !=
+                if grid [r][c] != ".":
+                    all_safe = False
+                    break
+                if not all_safe:
+                    break
 
 
-class Newgame:
-    def __init__()
+        if all_safe:
+            ship_positions.append([start_row, end_row, start_col, end_col])
+            for r in range(start_row, end_row):
+                for c in range(start_col, end_col):
+                    grid[r][c] ="X"
+
+        return all_safe
+
+
+
+#class Newgame:
+   # def __init__()
