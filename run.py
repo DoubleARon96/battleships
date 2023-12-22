@@ -50,24 +50,47 @@ print(player_name)
 
 print("test1")
 class grid_drawing():
-    """
-    this class draws out the grid
-    """
-    for i in range(player_grid_rows):
-        
-        for j in range(player_grid_column):
-            
-            print("O ", end="")
-        
-        print()
+    def __init__(self, grid, ships, hits, misses,):
+        """
+        this class draws out the grid
+        """
+        self.grid = grid
+        self.ships = ships
+        self.hits = hits
+        self.misses = misses
+
+    def print_grid(self):
+        for i in range(len(self.grid)):
+            for j in range(len(self.grid[i])):
+                print(self.grid[i][j],end=" ")
+            print()
     print("-------------------")
-    for i in range(cpu_grid_rows):
+
+grid = [["O" for _ in range(10)] for _ in range(5)]
+ships = [(0, 0), (1, 1), (2, 2)]
+hits = [(0, 0), (1, 1)]
+misses = [(3, 3), (4, 4)]
+
+gd = grid_drawing(grid, ships, hits, misses)
+
+# update the grid with the ships, hits, and misses
+for i, j in ships:
+    gd.grid[i][j] = "S"
+for i, j in hits:
+    gd.grid[i][j] = "H"
+for i, j in misses:
+    gd.grid[i][j] = "M"
+
+gd.print_grid()
+
+
+    #for i in range(cpu_grid_rows):
         
-        for j in range(cpu_grid_column):
+        #for j in range(cpu_grid_column):
             
-            print("O ", end="")
+            #print("O ", end="")
         
-        print()
+        #print()
 
 
 #class computer_choice():
