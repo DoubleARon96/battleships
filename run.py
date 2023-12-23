@@ -12,33 +12,39 @@ cpu_grid_column = 10
 name = ()
 
 class Player_Input:
-    def __init__(self, name, scores):
-        self.name = name
-        self.scores = scores
+    def __init__(self, player_name, game_scores):
+        self.player_name = player_name
+        self.game_scores = game_scores
 
 
     def get_player_name(self):
-        self.name = ""
+        self.player_name = ""
         
-        while not self.name:
+        while not self.player_name:
             
-            self.name = input("Enter Name Here")
+            self.name = input("Enter Name Here").strip()
 
-            if not self.name:
+            if not self.player_name:
                 print("Name Is Required")
 
     
         print(f"Output:Welcome to the battle {self.name}")
         
-        return self.name
+        return self.player_name
     
     def check_player_name(self):
-        if():
-            self.name == ""
+        """
+        checks players name
+        """
+        if not self.player_name:
             print("please Enter Name")
-        else:
-            return self.name
+            self.get_player_name()
+    
 
+player_name = input("Enter your name: ") # get the player name from the user
+game_scores = [] # create an empty list for the game scores
+player = Player_input(player_name, game_scores) # create an instance of the class
+player.check_player_name() # check the player name
 
 
 player_name = Player_Input
@@ -67,7 +73,7 @@ class grid_drawing():
     print("-------------------")
 
 grid = [["O" for _ in range(10)] for _ in range(5)]
-ships = [(0, 0), (1, 1), (2, 2)]
+ships = [(0, 0), (1, 1), (4, 2)]
 hits = [(0, 0), (1, 1)]
 misses = [(3, 3), (4, 4)]
 
