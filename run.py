@@ -43,7 +43,7 @@ class Player_Input:
 
 player_name = input("Enter your name: ") # get the player name from the user
 game_scores = [] # create an empty list for the game scores
-player = Player_input(player_name, game_scores) # create an instance of the class
+player = Player_Input(player_name, game_scores) # create an instance of the class
 player.check_player_name() # check the player name
 
 
