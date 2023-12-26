@@ -73,6 +73,7 @@ class grid_drawing():
                 print(self.grid[i][j],end=" ")
             print()
     print("-------------------")
+    #these help choose where the ships spawn on the grid
 random_nums = [0, 1, 2, 3, 4]
 random_num_choice = random.choice(random_nums)
 random_nums_X = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -95,7 +96,32 @@ for i, j in misses:
 gd.print_grid()
 '\n'
 print("Input Guild:first number is Y axis (0 To 4) and second number is X axis (0 To 9")
+    
 
+
+class Player_Input_checks():
+    '''
+    This class is to check the grid if the player input is a miss or hit
+    '''
+    def __init__(self,player_choice, misses, hits):
+
+        self.player_choice
+        self.misses
+        self.hits
+        
+        player_choice = input()
+
+    def check_hit_or_miss(x, y):
+    
+        if (x, y) in ships:
+            return "Hit!"
+    
+        elif (x, y) in misses:
+            return "Miss!"
+    
+        else:
+            return "Empty!"
+    player_choice
     #for i in range(cpu_grid_rows):
         
         #for j in range(cpu_grid_column):
