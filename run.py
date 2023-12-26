@@ -54,18 +54,6 @@ player.check_player_name()
 
 print(player.player_name)
 
-#player_name = input("Enter your name: ") # get the player name from the user
-#game_scores = [] # create an empty list for the game scores
-#player = Player_Input(player_name, game_scores) # create an instance of the class
-#player.check_player_name() # check the player name
-
-
-#player_name = Player_Input
-#print(player_name)
-
-   # def __init__(self.name)
-    #    name = player_name
-
 
 print("test1")
 class grid_drawing():
@@ -86,8 +74,8 @@ class grid_drawing():
     print("-------------------")
 
 grid = [["O" for _ in range(10)] for _ in range(5)]
-ships = [(0, 0), (1, 1), (4, 2)]
-hits = [(0, 0), (1, 1)]
+ships = [(0, 4), (1, 1), (4, 2)]
+hits = [(4, 9), (1, 1)]
 misses = [(3, 3), (4, 4)]
 
 gd = grid_drawing(grid, ships, hits, misses)
@@ -101,7 +89,8 @@ for i, j in misses:
     gd.grid[i][j] = "M"
 
 gd.print_grid()
-
+'/n'
+print("Input Guild:first number is Y axis and second number is X axis")
 
     #for i in range(cpu_grid_rows):
         
