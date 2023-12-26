@@ -12,24 +12,30 @@ cpu_grid_column = 10
 name = ()
 
 class Player_Input:
-    def __init__(self, player_name, game_scores):
+    def __init__(self, player_name=None,):
+        if not player_name:
+            player_name = self.get_player_name()
+
+
+            
         self.player_name = player_name
-        self.game_scores = game_scores
 
 
     def get_player_name(self):
-        self.player_name = ""
+        player_name = ""
         
-        while not self.player_name:
+        while not player_name:
             
-            self.name = input("Enter Name Here").strip()
+            player_name = input("Enter Name Here ").strip()
 
-            if not self.player_name:
+            if not player_name:
+
                 print("Name Is Required")
 
     
-        print(f"Output:Welcome to the battle {self.name}")
+        print(f"Output:Welcome to the battle {player_name}")
         
+        self.player_name = player_name
         return self.player_name
     
     def check_player_name(self):
@@ -38,17 +44,24 @@ class Player_Input:
         """
         if not self.player_name:
             print("please Enter Name")
-            self.get_player_name()
+            self.player_name = self.get_player_name()
+    
     
 
-player_name = input("Enter your name: ") # get the player name from the user
-game_scores = [] # create an empty list for the game scores
-player = Player_Input(player_name, game_scores) # create an instance of the class
-player.check_player_name() # check the player name
+player = Player_Input()
+
+player.check_player_name()
+
+print(player.player_name)
+
+#player_name = input("Enter your name: ") # get the player name from the user
+#game_scores = [] # create an empty list for the game scores
+#player = Player_Input(player_name, game_scores) # create an instance of the class
+#player.check_player_name() # check the player name
 
 
-player_name = Player_Input
-print(player_name)
+#player_name = Player_Input
+#print(player_name)
 
    # def __init__(self.name)
     #    name = player_name
@@ -107,4 +120,11 @@ gd.print_grid()
     #def __init__(self)
 #class Player():
 #class User_input():
-#class End_game
+#class End_game:
+    #def __init__(self, lives, score, rounds):
+       # self.lives = lives
+        #self.score = score
+       # self.rounds = rounds
+    
+    #def count_rounds(self):
+        #while
