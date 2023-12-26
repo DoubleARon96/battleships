@@ -1,5 +1,6 @@
 from random import randint
 import time
+import random
 
 # computer and player scores set to 0 
 scores = {"computer":0, "player":0}
@@ -72,9 +73,12 @@ class grid_drawing():
                 print(self.grid[i][j],end=" ")
             print()
     print("-------------------")
-
+random_nums = [0, 1, 2, 3, 4]
+random_num_choice = random.choice(random_nums)
+random_nums_X = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+random_num_choice_X = random.choice(random_nums_X)
 grid = [["O" for _ in range(10)] for _ in range(5)]
-ships = [(0, 4), (1, 1), (4, 2)]
+ships = [(random_num_choice, random_num_choice_X), (random_num_choice, random_num_choice_X), (random_num_choice, random_num_choice_X)]
 hits = [(4, 9), (1, 1)]
 misses = [(3, 3), (4, 4)]
 
@@ -89,8 +93,8 @@ for i, j in misses:
     gd.grid[i][j] = "M"
 
 gd.print_grid()
-'/n'
-print("Input Guild:first number is Y axis and second number is X axis")
+'\n'
+print("Input Guild:first number is Y axis (0 To 4) and second number is X axis (0 To 9")
 
     #for i in range(cpu_grid_rows):
         
