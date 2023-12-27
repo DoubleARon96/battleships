@@ -99,15 +99,15 @@ print("Input Guild:first number is Y axis (0 To 4) and second number is X axis (
     
 
 
-class Player_Input_checks():
+class Battleship():
     '''
     This class is to check the grid if the player input is a miss or hit
     '''
     def __init__(self,player_choice, misses, hits):
 
-        self.player_choice
-        self.misses
-        self.hits
+        self.player_choice = player_choice
+        self.misses = misses
+        self.hits = hits
         
         player_choice = input()
 
@@ -121,7 +121,11 @@ class Player_Input_checks():
     
         else:
             return "Empty!"
-    player_choice
+    
+game = Battleship(input("Enter your choice: "),[],[])
+
+input_checker = Player_Input_checks(game.player_choice, game.misses, game.hits)
+
     #for i in range(cpu_grid_rows):
         
         #for j in range(cpu_grid_column):
