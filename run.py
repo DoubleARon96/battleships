@@ -112,8 +112,9 @@ class Player_Input_checks():
         if len(input) == 2:
             if input[0].isalpha() and input[0].upper() in "ABCDE":
                 if input[1].isnumeric() and int(input[1]) in range(0, 11):
-                    if input in range (0, 4) and (0,9):
+                    if input in ships:
                         return True
+
         return False
     
     
@@ -123,7 +124,7 @@ class Battleship():
     '''
     This class is to check the grid if the player input is a miss or hit
     '''
-    def __init__(self,player_choice, misses, hits):
+    def __init__(self, player_choice, misses, hits):
 
         self.player_choice = player_choice
         self.misses = misses
@@ -131,7 +132,8 @@ class Battleship():
         
         player_choice = input()
 
-    def check_hit_or_miss(x, y):
+    def check_hit_or_miss(self, x, y):
+    ships = [(random_num_choice, random_num_choice_X), (random_num_choice, random_num_choice_X), (random_num_choice, random_num_choice_X)]
     
         if (x, y) in ships:
             return "Hit!"
@@ -142,7 +144,7 @@ class Battleship():
         else:
             return "Empty!"
     
-game = Battleship(input("Enter your choice: "),[],[])
+game = Battleship[input("Enter your choice: "),[],[]]
 
 input_checker = Player_Input_checks(game.player_choice, game.misses, game.hits)
 
