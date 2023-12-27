@@ -111,9 +111,12 @@ class Player_Input_checks():
     def check_input(self, input):
         if len(input) == 2:
             if input[0].isalpha() and input[0].upper() in "ABCDE":
-                if input[1].isnumeric() and int(input[1]) in range(1, 11):
-                    return True
+                if input[1].isnumeric() and int(input[1]) in range(0, 11):
+                    if input in range (0, 4) and (0,9):
+                        return True
         return False
+    
+    
 
 
 class Battleship():
