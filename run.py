@@ -96,7 +96,24 @@ for i, j in misses:
 gd.print_grid()
 '\n'
 print("Input Guild:first number is Y axis (0 To 4) and second number is X axis (0 To 9")
+
+
+class Player_Input_checks():
+
     
+    def __init__(self, player_choice, misses, hits):
+        
+        self.player_choice = player_choice
+        self.misses = misses
+        self.hits = hits
+
+    
+    def check_input(self, input):
+        if len(input) == 2:
+            if input[0].isalpha() and input[0].upper() in "ABCDE":
+                if input[1].isnumeric() and int(input[1]) in range(1, 11):
+                    return True
+        return False
 
 
 class Battleship():
@@ -143,11 +160,17 @@ input_checker = Player_Input_checks(game.player_choice, game.misses, game.hits)
     #def __init__(self)
 #class Player():
 #class User_input():
-#class End_game:
-    #def __init__(self, lives, score, rounds):
-       # self.lives = lives
-        #self.score = score
-       # self.rounds = rounds
+class End_game:
+    def __init__(self, lives, score, rounds):
+        self.lives = lives
+        self.score = score
+        self.rounds = rounds
     
-    #def count_rounds(self):
-        #while
+    def count_rounds(self):
+        for round in range (1, self.rounds +1):
+
+             print(f"Round {round} of {rounds}")
+             game_over = False
+
+        if game_over:
+            print("Game Over")
