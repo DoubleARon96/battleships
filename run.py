@@ -146,8 +146,6 @@ class grid_drawing():
                 self.grid[ship.coords_Y][ship.coords_X] = "S"
             else:
                 self.grid[ship.coords_Y][ship.coords_X] = "H"
-        # for i, j in hits:
-        #     self.grid[i][j] = "H"
         for i, j in misses:
             self.grid[i][j] = "M"
 
@@ -184,7 +182,7 @@ grid = [["O" for _ in range(10)] for _ in range(5)]
 
 ships = [ship1, ship2, ship3]
 hits = [(4, 9), (1, 1)]
-misses = [(3, 3), (4, 4)]
+misses = []
 
 gd = grid_drawing(ships, misses)
 
@@ -195,8 +193,16 @@ gd.print_grid()
 player_choice = player.get_player_choice()
 print(player_choice)
 
+num_misses = 0
 for ship in ships:
-    print(ship.check_hit_or_miss(player_choice[0], player_choice[1]))
+    result = ship.check_hit_or_miss(player_choice[0], player_choice[1])
+    if(result == "Miss!"):
+        num_misses += 1
+    else:
+        print(result)
+
+if(num_misses == len(ships)):
+    misses.append((player_choice[0], player_choice[1]))
 
 gd.update_grid(ships, misses)
 gd.print_grid()
