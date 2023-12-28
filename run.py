@@ -67,11 +67,11 @@ class Player_Input:
 
     
 
-player = Player_Input()
+# player = Player_Input()
 
-player.check_player_name()
+# player.check_player_name()
 
-print(player.player_name)
+# print(player.player_name)
 
 class Battleship():
     #global variables
@@ -121,10 +121,11 @@ class grid_drawing():
         self.grid = [["O" for _ in range(x)] for _ in range(y)]
 
         # update the grid with the ships, hits, and misses
-        self.grid[0][0] = "q"
-        self.grid[0][9] = "w"
-        self.grid[4][0] = "a"
-        self.grid[4][9] = "s"
+        # This is a reference to finding out which coords are the x and y
+        # self.grid[0][0] = "q"
+        # self.grid[0][9] = "w"
+        # self.grid[4][0] = "a"
+        # self.grid[4][9] = "s"
         for ship in ships:
             print(ship.coords_X, ship.coords_Y)
             if(ship.Is_Alive):
@@ -136,7 +137,6 @@ class grid_drawing():
         for i, j in misses:
             self.grid[i][j] = "M"
         self.ships = ships
-        self.hits = hits
         self.misses = misses
 
     def update_grid(self, ships, misses):
@@ -164,48 +164,49 @@ class grid_drawing():
             print("    |")
         print("----------------------")
     #these help choose where the ships spawn on the grid
-random_nums_Y = [0, 1, 2, 3, 4]
-random_num_choice_Y = random.choice(random_nums_Y)
-random_nums_X = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-random_num_choice_X = random.choice(random_nums_X)
-ship1 = Battleship(random_num_choice_X, random_num_choice_Y)
+# random_nums_Y = [0, 1, 2, 3, 4]
+# random_num_choice_Y = random.choice(random_nums_Y)
+# random_nums_X = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+# random_num_choice_X = random.choice(random_nums_X)
+# ship1 = Battleship(0, 0)
+# ship1.set_random_location()
 
-ship2 = Battleship(0,0)
-ship2.set_random_location()
+# ship2 = Battleship(0,0)
+# ship2.set_random_location()
 
-ship3 = Battleship(0,0)
-ship3.set_random_location()
-print("Ship1: " + str(ship1.coords_X) + ", " + str(ship1.coords_Y))
-print("Ship2: " + str(ship2.coords_X) + ", " + str(ship2.coords_Y))
-print("Ship3: " + str(ship3.coords_X) + ", " + str(ship3.coords_Y))
-grid = [["O" for _ in range(10)] for _ in range(5)]
+# ship3 = Battleship(0,0)
+# ship3.set_random_location()
+# print("Ship1: " + str(ship1.coords_X) + ", " + str(ship1.coords_Y))
+# print("Ship2: " + str(ship2.coords_X) + ", " + str(ship2.coords_Y))
+# print("Ship3: " + str(ship3.coords_X) + ", " + str(ship3.coords_Y))
+# grid = [["O" for _ in range(10)] for _ in range(5)]
 
-ships = [ship1, ship2, ship3]
-hits = [(4, 9), (1, 1)]
-misses = []
+# ships = [ship1, ship2, ship3]
+# hits = [(4, 9), (1, 1)]
+# misses = []
 
-gd = grid_drawing(ships, misses)
+# gd = grid_drawing(ships, misses)
 
 
 
-gd.print_grid()
+# gd.print_grid()
 '\n'
-player_choice = player.get_player_choice()
-print(player_choice)
+# player_choice = player.get_player_choice()
+# print(player_choice)
 
-num_misses = 0
-for ship in ships:
-    result = ship.check_hit_or_miss(player_choice[0], player_choice[1])
-    if(result == "Miss!"):
-        num_misses += 1
-    else:
-        print(result)
+# num_misses = 0
+# for ship in ships:
+#     result = ship.check_hit_or_miss(player_choice[0], player_choice[1])
+#     if(result == "Miss!"):
+#         num_misses += 1
+#     else:
+#         print(result)
 
-if(num_misses == len(ships)):
-    misses.append((player_choice[0], player_choice[1]))
+# if(num_misses == len(ships)):
+#     misses.append((player_choice[0], player_choice[1]))
 
-gd.update_grid(ships, misses)
-gd.print_grid()
+# gd.update_grid(ships, misses)
+# gd.print_grid()
 
 # input_checker = Player_Input_checks(game.player_choice, game.misses, game.hits)
 
@@ -246,17 +247,51 @@ class Player_Input_checks():
     #def __init__(self)
 #class Player():
 #class User_input():
-class End_game:
-    def __init__(self, lives, score, rounds):
-        self.lives = lives
+class Game:
+    def __init__(self, shots, score):
+        self.shots = shots
         self.score = score
-        self.rounds = rounds
     
-    def count_rounds(self):
-        for round in range (1, self.rounds +1):
+    def start(self):
+        ship1 = Battleship(0, 0)
+        ship1.set_random_location()
 
-             print(f"Round {round} of {rounds}")
-             game_over = False
+        ship2 = Battleship(0,0)
+        ship2.set_random_location()
 
-        if game_over:
-            print("Game Over")
+        ship3 = Battleship(0,0)
+        ship3.set_random_location()
+
+        ships = [ship1, ship2, ship3]
+
+        misses = []
+
+        player = Player_Input()
+
+        player.check_player_name()
+
+        gd = grid_drawing(ships, misses)
+        print("Shots left: " + str(self.shots))
+        gd.print_grid()
+        while self.shots > 0:
+            player_choice = player.get_player_choice()
+            self.shots -= 1
+            print(player_choice)
+
+            num_misses = 0
+            for ship in ships:
+                result = ship.check_hit_or_miss(player_choice[0], player_choice[1])
+                if(result == "Miss!"):
+                    num_misses += 1
+                else:
+                    print(result)
+
+            if(num_misses == len(ships)):
+                misses.append((player_choice[0], player_choice[1]))
+
+            gd.update_grid(ships, misses)
+            print("Shots left: " + str(self.shots))
+            gd.print_grid()
+
+game = Game(10, 0)
+game.start()
