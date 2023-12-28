@@ -55,14 +55,66 @@ player.check_player_name()
 
 print(player.player_name)
 
+class Battleship():
+    #global variables
+    # coords = {
+    #     "X" : 0,
+    #     "Y" : 0
+    # }
+
+    # Is_Alive = True
+
+
+    '''
+    This class is to check the grid if the player input is a miss or hit.
+    '''
+    def __init__(self, coords_X, coords_Y):
+
+        self.coords_X = coords_X
+        self.coords_Y = coords_Y
+
+    def set_random_location(self):
+        random_nums_Y = [0, 1, 2, 3, 4]
+        random_num_choice_Y = random.choice(random_nums_Y)
+        random_nums_X = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        random_num_choice_X = random.choice(random_nums_X)
+        self.coords_X = random_num_choice_X
+        self.coords_Y = random_num_choice_Y
+
+    def check_hit_or_miss(self, X, Y):
+        
+        if (X == self.coords_X, Y == self.coords_Y):
+            self.Is_Alive = False
+            return "Hit!"
+
+        else:
+            return "Miss!"
+
 
 print("test1")
 class grid_drawing():
-    def __init__(self, grid, ships, hits, misses,):
-        """
-        this class draws out the grid
-        """
-        self.grid = grid
+    grid = [[],[]]
+    
+    """
+    this class draws out the grid and updates the ships, hits, misses
+    """
+    def __init__(self, ships, hits, misses):
+        y = 5
+        x = 10
+        self.grid = [["O" for _ in range(x)] for _ in range(y)]
+
+        # update the grid with the ships, hits, and misses
+        self.grid[0][0] = "q"
+        self.grid[0][9] = "w"
+        self.grid[4][0] = "a"
+        self.grid[4][9] = "s"
+        for ship in ships:
+            print(ship.coords_X, ship.coords_Y)
+            self.grid[ship.coords_Y][ship.coords_X] = "S"
+        for i, j in hits:
+            self.grid[i][j] = "H"
+        for i, j in misses:
+            self.grid[i][j] = "M"
         self.ships = ships
         self.hits = hits
         self.misses = misses
@@ -72,7 +124,12 @@ class grid_drawing():
         for i in range(len(self.grid)):
             print("|    ",end="")
             for j in range(len(self.grid[i])):
-                print(self.grid[i][j],end="")
+                # This code will hide the ships and empty spaces
+                # So you can easily hide the grid
+                # if(self.grid[i][j] == "S" or self.grid[i][j] == "O"):
+                #     print("?", end="")
+                # else:
+                    print(self.grid[i][j],end="")
             print("    |")
         print("--------------------")
     #these help choose where the ships spawn on the grid
@@ -80,24 +137,33 @@ random_nums_Y = [0, 1, 2, 3, 4]
 random_num_choice_Y = random.choice(random_nums_Y)
 random_nums_X = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 random_num_choice_X = random.choice(random_nums_X)
+ship1 = Battleship(random_num_choice_X, random_num_choice_Y)
+
+ship2 = Battleship(0,0)
+ship2.set_random_location()
+
+ship3 = Battleship(0,0)
+ship3.set_random_location()
+print("Ship1: " + str(ship1.coords_X) + ", " + str(ship1.coords_Y))
+print("Ship2: " + str(ship2.coords_X) + ", " + str(ship2.coords_Y))
+print("Ship3: " + str(ship3.coords_X) + ", " + str(ship3.coords_Y))
 grid = [["O" for _ in range(10)] for _ in range(5)]
-ships = [(random_num_choice_Y, random_num_choice_X), (random_num_choice_Y, random_num_choice_X), (random_num_choice_Y, random_num_choice_X)]
+
+ships = [ship1, ship2, ship3]
 hits = [(4, 9), (1, 1)]
 misses = [(3, 3), (4, 4)]
 
-gd = grid_drawing(grid, ships, hits, misses)
+gd = grid_drawing(ships, hits, misses)
 
-# update the grid with the ships, hits, and misses
-for i, j in ships:
-    gd.grid[i][j] = "S"
-for i, j in hits:
-    gd.grid[i][j] = "H"
-for i, j in misses:
-    gd.grid[i][j] = "M"
+
 
 gd.print_grid()
 '\n'
 print("Input Guild:first number is Y axis (0 To 4) and second number is X axis (0 To 9")
+
+game = Battleship(input("Enter your choice: "),hits,misses)
+
+input_checker = Player_Input_checks(game.player_choice, game.misses, game.hits)
 
 
 class Player_Input_checks():
@@ -119,36 +185,6 @@ class Player_Input_checks():
 
         return False
     
-    
-
-
-class Battleship():
-    coords = {
-        "X" = 0
-        "Y" = 0
-    }
-    Is_Alive = True
-    '''
-    This class is to check the grid if the player input is a miss or hit
-    '''
-    def __init__(self, coords_X, coords_Y):
-
-        self.coords["X"] = coords_X
-        self.coords["Y"] = coords_Y
-
-    def check_hit_or_miss(self, X, Y):
-        
-        if (X = self.coords["X"], Y = self.coords["Y"]):
-            self.Is_Alive = False
-            return "Hit!"
-            
-        else:
-            return "Miss!"
-    
-game = Battleship(input("Enter your choice: "),hits,misses)
-
-input_checker = Player_Input_checks(game.player_choice, game.misses, game.hits)
-
     #for i in range(cpu_grid_rows):
         
         #for j in range(cpu_grid_column):
