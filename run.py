@@ -17,8 +17,6 @@ class Player_Input:
         if not player_name:
             player_name = self.get_player_name()
 
-
-            
         self.player_name = player_name
 
 
@@ -47,6 +45,26 @@ class Player_Input:
             print("please Enter Name")
             self.player_name = self.get_player_name()
     
+    def get_player_choice(self):
+        valid_input = False
+        while not valid_input:
+            print("Input Guild:first number is Y axis (0 To 4) and second number is X axis (0 To 9")
+            player_input = input("Enter your choice: ")
+            try:
+                player_choice = list(map(int, player_input.split(",")))
+                if(len(player_choice) != 2 ):
+                    raise Exception("To Many Inputs")
+                valid_input = True
+            except Exception as e: 
+                print(e)
+                valid_input = False
+        
+        return player_choice
+
+
+
+
+
     
 
 player = Player_Input()
@@ -81,8 +99,8 @@ class Battleship():
         self.coords_Y = random_num_choice_Y
 
     def check_hit_or_miss(self, X, Y):
-        
-        if (X == self.coords_X, Y == self.coords_Y):
+        print(self.coords_X, self.coords_Y)
+        if (X == self.coords_X and Y == self.coords_Y):
             self.Is_Alive = False
             return "Hit!"
 
@@ -161,9 +179,11 @@ gd = grid_drawing(ships, misses)
 
 gd.print_grid()
 '\n'
-print("Input Guild:first number is Y axis (0 To 4) and second number is X axis (0 To 9")
+player_choice = player.get_player_choice()
+print(player_choice)
 
-game = Battleship(input("Enter your choice: "),hits,misses)
+for ship in ships:
+    print(ship.check_hit_or_miss(player_choice[0], player_choice[1]))
 
 input_checker = Player_Input_checks(game.player_choice, game.misses, game.hits)
 
