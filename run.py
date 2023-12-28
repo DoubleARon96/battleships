@@ -139,19 +139,32 @@ class grid_drawing():
         self.hits = hits
         self.misses = misses
 
+    def update_grid(self, ships, misses):
+        for ship in ships:
+            print(ship.coords_X, ship.coords_Y)
+            if(ship.Is_Alive):
+                self.grid[ship.coords_Y][ship.coords_X] = "S"
+            else:
+                self.grid[ship.coords_Y][ship.coords_X] = "H"
+        # for i, j in hits:
+        #     self.grid[i][j] = "H"
+        for i, j in misses:
+            self.grid[i][j] = "M"
+
     def print_grid(self):
-        print("--------------------")
+        print("----------------------")
+        print("|      0123456789    |")
         for i in range(len(self.grid)):
-            print("|    ",end="")
+            print("|    " + str(i) + " ",end="")
             for j in range(len(self.grid[i])):
                 # This code will hide the ships and empty spaces
                 # So you can easily hide the grid
-                # if(self.grid[i][j] == "S" or self.grid[i][j] == "O"):
-                #     print("?", end="")
-                # else:
+                if(self.grid[i][j] == "S" or self.grid[i][j] == "O"):
+                    print("?", end="")
+                else:
                     print(self.grid[i][j],end="")
             print("    |")
-        print("--------------------")
+        print("----------------------")
     #these help choose where the ships spawn on the grid
 random_nums_Y = [0, 1, 2, 3, 4]
 random_num_choice_Y = random.choice(random_nums_Y)
@@ -185,7 +198,10 @@ print(player_choice)
 for ship in ships:
     print(ship.check_hit_or_miss(player_choice[0], player_choice[1]))
 
-input_checker = Player_Input_checks(game.player_choice, game.misses, game.hits)
+gd.update_grid(ships, misses)
+gd.print_grid()
+
+# input_checker = Player_Input_checks(game.player_choice, game.misses, game.hits)
 
 
 class Player_Input_checks():
